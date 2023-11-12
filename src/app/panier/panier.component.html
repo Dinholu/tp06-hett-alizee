@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <h2>Votre Panier</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Produit</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+        <th>Total</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of produitsPanier$ | async">
+        <td>{{ item }}</td>
+        <!-- <td>
+          <button class="btn btn-danger btn-sm" (click)="retirerDuPanier(item)">Retirer</button>
+        </td> -->
+      </tr>
+    </tbody>
+  </table>
+  <div *ngFor="let item of produitsPanier$ | async">
+  <p>hello {{ item }}</p>
+  </div>
+</div>

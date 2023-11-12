@@ -1,0 +1,34 @@
+<main class="flex-shrink-0">
+  <div class="container mt-4 ">
+    <h2>Catalogue</h2>
+    <div class="form-group">
+      <label for="recherche">Recherche :</label>
+      <input type="text" [(ngModel)]="recherche" name="recherche"
+            class="form-control" id="recherche"
+            placeholder="Entrer un mot-clé">
+    </div>
+  </div>
+  <div class="container mt-4">
+    <div *ngIf="produits$ | async as produits">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Référence</th>
+            <th>Désignation</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of produits | filter: recherche">
+            <td>{{ p.ref }}</td>
+            <td>{{ p.designation }}</td>
+            <td>{{ p.prix }}</td>
+            <td>{{ p.qte }}</td>
+            <td><button (click)="addProduit(p)" class="btn btn-primary">Ajouter au panier</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
