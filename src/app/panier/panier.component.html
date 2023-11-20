@@ -1,26 +1,29 @@
 <div class="container mt-4">
   <h2>Votre Panier</h2>
 
-  <table class="table">
+  <table class="table" *ngIf="(produitsPanier$ | async)?.length; else panierVide">
     <thead>
       <tr>
-        <th>Produit</th>
-        <th>Prix</th>
-        <th>Quantité</th>
-        <th>Total</th>
-        <th>Actions</th>
+          <th>Référence</th>
+          <th>Désignation</th>
+          <th>Prix</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of produitsPanier$ | async">
-        <td>{{ item }}</td>
-        <!-- <td>
-          <button class="btn btn-danger btn-sm" (click)="retirerDuPanier(item)">Retirer</button>
-        </td> -->
+        <td>{{ item.ref }}</td>
+        <td>{{ item.designation }}</td>
+        <td>{{ item.prix }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="delete(item)">Retirer</button>
+        </td>
       </tr>
     </tbody>
   </table>
-  <div *ngFor="let item of produitsPanier$ | async">
-  <p>hello {{ item }}</p>
+<div class="d-flex justify-content-center mb-2">
+    <button *ngIf="(produitsPanier$ | async)?.length;" class="btn btn-primary  m-auto"  (click)="deleteAll()">Supprimer tous les produits</button>
   </div>
+  <ng-template #panierVide>
+    <p>Votre panier est vide.</p>
+  </ng-template>
 </div>

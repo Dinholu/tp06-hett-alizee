@@ -3,6 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { PanierState } from '../shared/states/panier-state';
 import { Observable } from 'rxjs';
 import { Produit } from '../shared/models/produit';
+import { RemoveAllProduit, RemoveProduit } from '../shared/actions/produits-actions';
 
 @Component({
   selector: 'app-panier',
@@ -14,7 +15,12 @@ export class PanierComponent implements OnInit {
 
   @Select(PanierState.getProduitsPanier) produitsPanier$?: Observable<Produit[]>;
 
-  ngOnInit(): void {
-
+  delete(produit: Produit) {
+    this.store.dispatch(new RemoveProduit(produit));
   }
+
+  deleteAll() {
+    this.store.dispatch(new RemoveAllProduit());
+  }
+  ngOnInit(): void { }
 }

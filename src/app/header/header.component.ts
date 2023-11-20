@@ -9,6 +9,5 @@ import { PanierState } from '../shared/states/panier-state';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  @Select(PanierState.getProduitsPanier) nb$?: Observable<number>;
-
+  @Select(PanierState.getNbProduitsPanier) nb$?: Observable<number>;
 }

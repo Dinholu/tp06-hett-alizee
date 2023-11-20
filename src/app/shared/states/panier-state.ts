@@ -6,7 +6,7 @@ import {
   StateContext,
 } from '@ngxs/store';
 import { Produit } from '../models/produit';
-import { AddProduit, RemoveProduit } from '../actions/produits-actions';
+import { AddProduit, RemoveAllProduit, RemoveProduit } from '../actions/produits-actions';
 import { PanierStateModel } from './panier.state.model';
 @State<PanierStateModel>({
   name: 'panier',
@@ -37,6 +37,12 @@ export class PanierState {
   remove({ getState, patchState }: StateContext<PanierStateModel>, { payload }: RemoveProduit) {
     patchState({
       produitsPanier: getState().produitsPanier.filter(a => a.ref !== payload.ref)
+    });
+  }
+  @Action(RemoveAllProduit)
+  removeAll({ patchState }: StateContext<PanierStateModel>) {
+    patchState({
+      produitsPanier: []
     });
   }
 }

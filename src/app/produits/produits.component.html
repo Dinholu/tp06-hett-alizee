@@ -25,7 +25,7 @@
             <td>{{ p.designation }}</td>
             <td>{{ p.prix }}</td>
             <td>{{ p.qte }}</td>
-            <td><button (click)="addProduit(p)" class="btn btn-primary">Ajouter au panier</button></td>
+            <td><button (click)="addProduit(p)" class="btn btn-primary" [disabled]="p.qte == 0">Ajouter au panier</button></td>
           </tr>
         </tbody>
       </table>
