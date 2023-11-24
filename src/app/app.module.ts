@@ -7,10 +7,14 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { PanierComponent } from './panier/panier.component';
 import { ProduitsComponent } from './produits/produits.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FilterPipe } from './filter.pipe';
 import { NgxsModule } from '@ngxs/store';
 import { PanierState } from './shared/states/panier-state';
+import { ApiHttpInterceptor } from './http-interceptor';
+import { CatalogueService } from './catalogue.service';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +23,8 @@ import { PanierState } from './shared/states/panier-state';
     FooterComponent,
     PanierComponent,
     ProduitsComponent,
-    FilterPipe
+    FilterPipe,
+    LoginComponent
 
   ],
   imports: [
@@ -29,7 +34,10 @@ import { PanierState } from './shared/states/panier-state';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ApiHttpInterceptor, multi: true },
+    CatalogueService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
