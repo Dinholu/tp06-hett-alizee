@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CatalogueService } from '../catalogue.service';
 import { Observable } from 'rxjs';
 import { Produit } from '../shared/models/produit';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,8 +18,9 @@ export class LoginComponent implements OnInit {
   nom: string = '';
   prenom: string = '';
   cnx: boolean = false;
+  error: string = '';
   produit$: Observable<Produit[]>;
-  constructor(private catalogueService: CatalogueService) {
+  constructor(private catalogueService: CatalogueService, private router: Router) {
     this.produit$ = this.catalogueService.getProduits();
   }
 
@@ -32,9 +33,15 @@ export class LoginComponent implements OnInit {
         this.nom = data.nom;
         this.prenom = data.prenom;
         this.cnx = true;
+
+        setTimeout(() => {
+          this.router.navigate(['/produits']);
+        }, 2000);
       },
       (error) => {
         console.log(error);
+        this.error = 'Erreur de connexion utilisez login:emma et password:toto';
+
       }
     );
   }
