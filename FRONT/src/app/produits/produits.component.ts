@@ -10,8 +10,8 @@ import { Store } from '@ngxs/store';
   templateUrl: './produits.component.html',
   styleUrls: ['./produits.component.css'],
   providers: [CatalogueService],
-
 })
+
 export class ProduitsComponent implements OnInit {
   produits$: Observable<Produit[]>;
   @ViewChild('rechercheInput', { static: true }) rechercheInput!: ElementRef;
