@@ -8,7 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { PanierComponent } from './panier/panier.component';
 import { ProduitsComponent } from './produits/produits.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FilterPipe } from './filter.pipe';
+// import { FilterPipe } from './filter.pipe';
 import { NgxsModule } from '@ngxs/store';
 import { PanierState } from './shared/states/panier-state';
 import { ApiHttpInterceptor } from './http-interceptor';
@@ -23,7 +23,7 @@ import { LoginComponent } from './login/login.component';
     FooterComponent,
     PanierComponent,
     ProduitsComponent,
-    FilterPipe,
+    // FilterPipe,
     LoginComponent
 
   ],

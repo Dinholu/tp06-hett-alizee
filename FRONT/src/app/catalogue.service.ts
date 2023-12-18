@@ -23,4 +23,8 @@ export class CatalogueService {
   public getProduits(): Observable<Produit[]> {
     return this.http.get<Produit[]>(environment.backendCatalogue);
   }
+
+  public getSearchProduits(search: string): Observable<Produit[]> {
+    return this.http.get<Produit[]>(environment.backendCatalogue + '/' + search);
+  }
 }

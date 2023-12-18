@@ -1,15 +1,13 @@
 <main class="flex-shrink-0" style="min-height: 75vh;">
   <div class="container mt-4 ">
     <h2>Catalogue</h2>
-    <div class="form-group">
-      <label for="recherche">Recherche :</label>
-      <input type="text" [(ngModel)]="recherche" name="recherche"
-            class="form-control" id="recherche"
-            placeholder="Entrer un mot-clé">
-    </div>
+  <div class="form-group">
+    <label for="recherche">Recherche :</label>
+  <input #rechercheInput type="text" class="form-control" id="recherche" placeholder="Entrer un mot-clé" (input)="onSearchInputChange(rechercheInput.value)">
+  </div>
   </div>
   <div class="container mt-4">
-    <div *ngIf="produits$ | async as produits">
+    <div *ngIf="(produits$ | async) as produits">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -20,7 +18,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let p of produits | filter: recherche">
+          <tr *ngFor="let p of produits">
             <td>{{ p.ref }}</td>
             <td>{{ p.designation }}</td>
             <td>{{ p.prix }}</td>
